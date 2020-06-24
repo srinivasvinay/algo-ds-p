@@ -15,8 +15,8 @@ public class MergeSort {
     private void mergeTopDown(Comparable[] numbers, int lo, int hi, Comparable[] aux) {
         if (hi <= lo)
             return;
-        int mid = lo+(hi-lo) / 2;
-        
+        int mid = lo + (hi - lo) / 2;
+
         mergeTopDown(numbers, lo, mid, aux);
         mergeTopDown(numbers, mid + 1, hi, aux);
         merge(lo, mid, hi, numbers, aux);
@@ -26,9 +26,10 @@ public class MergeSort {
     private void merge(int lo, int mid, int hi, Comparable[] numbers, Comparable[] aux) {
         int k = 0;
         for (Comparable num : numbers) {
-            aux[k++] = num;
+            aux[k++]=num;
         }
 
+         
         int j = mid + 1;
         int i = lo;
         
