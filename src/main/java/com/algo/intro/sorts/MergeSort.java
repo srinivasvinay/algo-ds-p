@@ -1,15 +1,29 @@
 package com.algo.intro.sorts;
 
+import java.math.BigInteger;
 import java.util.Arrays;
 
 public class MergeSort {
     public static void main(String[] args) {
 
-        Integer[] toBeSortedNumbers = { 657, 476, 76, 55, 47, 7, 5, 344, 444, 63, 643, 5, 555, 23, 1 };
-        Integer[] auxArray = new Integer[toBeSortedNumbers.length];
+        Integer[] toBeSortedNumbersTopDown = { 657, 476, 76, 55, 47, 7, 5, 344, 444, 63, 643, 5, 555, 23, 1 };
+        Integer[] toBeSortedNumbersBottomUp = { 657, 476, 76, 55, 47, 7, 5, 344, 444, 63, 643, 5, 555, 23, 1 };
+        Integer[] auxArray = new Integer[toBeSortedNumbersTopDown.length];
         MergeSort mergeSort = new MergeSort();
-        mergeSort.mergeTopDown(toBeSortedNumbers, 0, toBeSortedNumbers.length, auxArray);
-        System.out.println(Arrays.toString(toBeSortedNumbers));
+        mergeSort.mergeTopDown(toBeSortedNumbersBottomUp, 0, toBeSortedNumbersBottomUp.length, auxArray);
+        mergeSort.mergeBottomUp(toBeSortedNumbersTopDown, auxArray);
+        System.out.println(Arrays.toString(toBeSortedNumbersTopDown));
+    }
+
+    private void mergeBottomUp(Comparable[] numbers, Comparable[] aux) {
+        int stepSize = 1;
+        int N = numbers.length;
+        while (stepSize < N) {
+            for (int i = 0; (i + stepSize) < N; i += 2 * stepSize) {
+                merge(i, ((i + stepSize) - 1), Math.min((i + 2 * stepSize), N), numbers, aux);
+            }
+            stepSize += stepSize;
+        }
     }
 
     private void mergeTopDown(Comparable[] numbers, int lo, int hi, Comparable[] aux) {
@@ -32,8 +46,8 @@ public class MergeSort {
          
         int j = mid + 1;
         int i = lo;
-        
-        for (int f = lo; f <hi; f++) {
+
+        for (int f = lo; f < hi; f++) {
             if (i > mid) {
                 numbers[f] = aux[j++];
             } else if (j >= hi) {
