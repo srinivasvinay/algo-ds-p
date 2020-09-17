@@ -26,7 +26,7 @@ public class PermutationsTest {
       final Permutations cls = new Permutations();
       for (final Map.Entry<String, Integer> entry : testMap.entrySet()) {
 
-         final List<String> permList = cls.listAllPermutationsForString(entry.getKey());
+         final List<String> permList = cls.listAllPermutationsForString2(entry.getKey());
 
          assertEquals((Integer) permList.size(), entry.getValue());
 
@@ -39,12 +39,12 @@ public class PermutationsTest {
 
    public static void main(String[] args) {
       Result result = JUnitCore.runClasses(PermutationsTest.class);
-        
+
       for (Failure failure : result.getFailures()) {
-         System.out.println(failure.toString());
+         System.out.println(failure.toString()+" "+failure.getTrace());
       }
-        
-      System.out.println("All the test cases passed : "+result.wasSuccessful());
+
+      System.out.println("All the test cases passed : " + result.wasSuccessful());
    }
 
 }
