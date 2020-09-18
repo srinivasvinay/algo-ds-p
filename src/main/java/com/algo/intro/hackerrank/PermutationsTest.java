@@ -1,4 +1,4 @@
-package com.algo.intro.sorts;
+package com.algo.intro.hackerrank;
 
 import static org.junit.Assert.assertEquals;
 
